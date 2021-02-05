@@ -28,6 +28,7 @@ const Main = () => {
 	const [rawData, setRawData] = React.useState()
 	const [showOutput, setShowoutput] = React.useState(false)
 	const [csvData, setcsvData] = React.useState()
+	const [chartData, setchartData] = React.useState()
 	const [cityList, setCityList] = React.useState([])
 	const [openDialog, setOpenDialog] = React.useState(false)
 
@@ -109,6 +110,7 @@ const Main = () => {
 	 */
 	const showOutPut = (data) => {
 		setcsvData(data.data)
+		setchartData([...data.data])
 		setShowoutput(true)
 	}
 
@@ -364,7 +366,7 @@ const Main = () => {
 						</Grid>
 						<Grid item xs={6}>
 							<Typography variant='h6'>Chart</Typography>
-							<Chart data={csvData} />
+							<Chart data={chartData} />
 						</Grid>
 					</Grid>
 				</>

@@ -10,13 +10,13 @@ import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { countries, cities, genders } from '../data'
 import Papa from 'papaparse'
-import DenseTable from './Table'
+import Table from './Table'
 import Chart from './Chart'
 import Dialog from './Dialog'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const Input = () => {
+const Main = () => {
 	const classes = useStyles()
 	const [name, setName] = React.useState('')
 	const [email, setEmail] = React.useState('')
@@ -71,7 +71,6 @@ const Input = () => {
 	 */
 	const confirmUpload = () => {
 		if (!!rawData) {
-			console.log('here')
 			setOpenDialog(true)
 		} else {
 			handleCSVUpload()
@@ -95,18 +94,22 @@ const Input = () => {
 
 	/**
 	 * This function actully parse the final data used to show table and charts in output screen
-	 * Check if rawData (comma seprated string) exists, if yes then convert it to array
-	 * and set flag to show output
+	 * Check if rawData (comma seprated string) exists, if yes then convert it to array and call showOutPut function
 	 */
 	const handleSubmit = () => {
 		if (!!rawData) {
 			Papa.parse(rawData, {
-				complete: (data) => {
-					setcsvData(data.data)
-				},
+				complete: showOutPut,
 			})
-			setShowoutput(true)
 		}
+	}
+
+	/**
+	 * Set csvData prop and shows the output page
+	 */
+	const showOutPut = (data) => {
+		setcsvData(data.data)
+		setShowoutput(true)
 	}
 
 	return (
@@ -357,7 +360,7 @@ const Input = () => {
 					<Grid container spacing={8}>
 						<Grid item xs={6}>
 							<Typography variant='h6'>Data</Typography>
-							<DenseTable data={csvData} />
+							<Table data={csvData} />
 						</Grid>
 						<Grid item xs={6}>
 							<Typography variant='h6'>Chart</Typography>
@@ -402,4 +405,4 @@ const Input = () => {
 		</>
 	)
 }
-export default Input
+export default Main

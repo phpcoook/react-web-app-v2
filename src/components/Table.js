@@ -17,7 +17,7 @@ export default function Output(props) {
 
 	const rows = data.map((row, index) => {
 		return {
-			id: index + 1,
+			id: index,
 			product: row[0],
 			price: row[1],
 		}

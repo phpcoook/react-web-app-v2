@@ -8,8 +8,6 @@ const Chart = (props) => {
 		return null
 	}
 
-	console.log(data)
-
 	data.shift()
 
 	const labels = data.map((row) => row[0])

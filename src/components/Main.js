@@ -199,6 +199,7 @@ const Main = () => {
 									value={country}
 									onChange={(event) => {
 										setCountry(event.target.value)
+										setCity('')
 										setCityList(cities[event.target.value])
 									}}
 									label='Country'
@@ -353,7 +354,7 @@ const Main = () => {
 									</p>
 								</Grid>
 								<Grid item xs={6}>
-									<p style={{ textAlign: 'right' }}>{gender}</p>
+									<p style={{ textAlign: 'right' }}>{city}</p>
 								</Grid>
 							</Grid>
 							<hr />
